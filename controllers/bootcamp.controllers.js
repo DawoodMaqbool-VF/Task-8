@@ -26,11 +26,13 @@ exports.postBootcamp = asyncMiddleware(async (req,res) => { //Function to create
 });
 
 exports.putBootcamp = asyncMiddleware(async (req,res) => { //Function to update an existing course.
-  if (req.body.author.valueof() !== req.userID){
-    return res.send("Invalid user")
-  }
+  // if (req.body.author.valueOf() !== req.userID){
+  //   return res.send("Invalid user")
+  // }
 
-  const course = await Bootcamp.findByIdAndUpdate(req.params.id, req.body ); //find the record according to id and update with the given query in body text.
+  const course = await Bootcamp.findByIdAndUpdate(req.params.id, req.body,
+    {new: true,
+    runValidators: true}  ); //find the record according to id and update with the given query in body text.
   if(!course) return res.send("The course with the given ID not found"); //if not found display am appropriate message
   
   const result = await course.save(); //save the record 
@@ -39,9 +41,9 @@ exports.putBootcamp = asyncMiddleware(async (req,res) => { //Function to update 
 });
 
 exports.deleteBootcamp = asyncMiddleware( async (req,res) => { //Function to delete a function by ID.
-  if (req.body.author.valueof() !== req.userID){
-    return res.send("Invalid user")
-  }
+  // if (req.body.author.valueOf() !== req.userID){
+  //   return res.send("Invalid user")
+  // }
 
   const result = await Bootcamp.findByIdAndRemove(req.params.id); //find the record according to id and remove
   if(!result) return res.send("The course with the given ID not found"); //if not found display am appropriate message

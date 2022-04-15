@@ -12,7 +12,7 @@ router.post("/api/auth/reset-password", userController.reset_Password); //for us
 router.post("/api/auth/change-password",verifyToken , userController.change_Password); //for user to change password
 router.use("/api/bootcamp",verifyToken,  getBootcamp);
 router.get("*", (req,res) =>{ 
-    return res.status(404).send("The given path is not correct"); //to display a relevant response if the given url is not correct
+    return res.status(404).send("The given path is not correct....."); //to display a relevant response if the given url is not correct
 });
 
 module.exports  = router;

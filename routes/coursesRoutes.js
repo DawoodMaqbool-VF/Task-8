@@ -1,6 +1,6 @@
 const express = require('express');
 const router =  express.Router({mergeParams: true}) //setting up express router
-const Course = require('../models/coursemodel')
+//const Course = require('../models/coursemodel')
 
 //All CRUD endpoints
 
